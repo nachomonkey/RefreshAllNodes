@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.0",
+	"Version": 2,
+	"VersionName": "1.1",
 	"FriendlyName": "RefreshAllNodes",
 	"Description": "Adds a button that refreshes every blueprint node in every blueprint.",
 	"Category": "Blueprints",

@@ -32,6 +32,8 @@ void FRefreshAllNodesModule::StartupModule()  {
 
 	auto& MenuExtenders = LevelEditorModule.GetAllLevelEditorToolbarBlueprintsMenuExtenders();
 	MenuExtenders.Add(MenuExtender);
+   
+	LevelEditorModule.GetGlobalLevelEditorActions()->Append(CommandList.ToSharedRef());
 }
 
 void FRefreshAllNodesModule::ShutdownModule()
@@ -99,6 +101,8 @@ void FRefreshAllNodesModule::RefreshButton_Clicked() {
 
 	UEditorLoadingAndSavingUtils::SavePackages(PackagesToSave, true);   // Save the refreshed blueprints
 }
+
+
 
 #undef LOCTEXT_NAMESPACE
 	
