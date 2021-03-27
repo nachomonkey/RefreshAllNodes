@@ -34,8 +34,17 @@ class URefreshAllNodesSettings : public UDeveloperSettings
 
 		/**
 		 * Additional paths to search in for blueprints to refresh, good for plugins
-		 * Example: Add "Paper2D" to the array to search the Paper2D plugin for blueprints to refresh.
+		 * Example: Add "Paper2D" to not search the Paper2D plugin for blueprints to refresh.
 		 */
 		UPROPERTY(config, EditAnywhere, Category=Search)
 		TArray<FName> AdditionalBlueprintPaths;
+
+		/**
+		 * Blueprint paths to not search in for blueprints to refresh, good for
+		 * blueprints with little dependencies that take lots of resources to
+		 * load. Example: Add "/Game/Marketplace" to not search the "Marketplace"
+		 * directory in the Content folder.
+		 */
+		UPROPERTY(config, EditAnywhere, Category=Search)
+		TArray<FName> ExcludeBlueprintPaths;
 };

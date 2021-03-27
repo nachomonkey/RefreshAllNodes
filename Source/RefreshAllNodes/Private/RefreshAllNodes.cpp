@@ -71,6 +71,18 @@ void FRefreshAllNodesModule::RefreshButton_Clicked() {
 	TArray<UPackage*> PackagesToSave;
 
 	for (FAssetData Data : AssetData) {
+		bool ShouldSkip = false;
+
+		for (FName Path : Settings->ExcludeBlueprintPaths) {
+			if (Data.ObjectPath.ToString().StartsWith(Path.ToString(), ESearchCase::CaseSensitive)) {
+				ShouldSkip = true;
+				break;
+			}
+		}
+
+		if (ShouldSkip)
+			continue;
+
 		UBlueprint* Blueprint;
 	
 		Blueprint = Cast<UBlueprint>(Data.GetAsset());

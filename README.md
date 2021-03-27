@@ -26,8 +26,7 @@ The plugin can be configured under **Project Settings ->  Plugins -> Refresh All
 * Refresh Game Blueprints: If checked, the plugin will refresh blueprints found in the project's Content folder
 * Refresh Engine Blueprints: If checked, the plugin will refresh blueprints found in the engine's Content folder
 * Additional Blueprint Paths: Array of additional paths to search in. Most useful for plugins. Add the name of the plugin to refresh its blueprints.
-
-
+* Exclude Blueprint Paths: Array of paths to not refresh blueprints in. Useful for excluding blueprints that are expensive to load.
 
 ## Compatibility
 
