@@ -36,8 +36,8 @@ It has been tested with the following versions:
 
 #### Unreal Engine Versions
 
-* 4.25
-* 4.26.1
+* 4.25.*x*
+* 4.26.*x*
 
 # License
 
