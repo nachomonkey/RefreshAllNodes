@@ -4,9 +4,19 @@
 
 ## Installation
 
-1. Either clone the repository or extract the ZIP file into your project's Plugins directory.
+### Pre-compiled (recommended)
 
-2. Restart the editor.
+Pre-compiled released of this plugin are supplied for Windows 64-bit.
+
+Select a release that matches your version of Unreal Engine:
+
+https://github.com/nachomonkey/RefreshAllNodes/releases
+
+### Compiling from source
+
+Clone or download the repository into your project's Plugins directory, and relaunch the editor.
+
+A message will ask to compile the plugin.
 
 ## Usage
 
@@ -33,8 +43,6 @@ The plugin can be configured under **Project Settings ->  Plugins -> Refresh All
 The plugin has been tested on Linux and Windows.
 
 It has been tested with the following versions:
-
-#### Unreal Engine Versions
 
 * 4.25.*x*
 * 4.26.*x*
