@@ -6,17 +6,17 @@
 
 ### Pre-compiled (recommended)
 
-Pre-compiled released of this plugin are supplied for Windows 64-bit.
+*Pre-compiled released of this plugin are supplied for Windows 64-bit.*
 
-Select a release that matches your version of Unreal Engine:
+Download a release that matches your version of Unreal Engine [from here](https://github.com/nachomonkey/RefreshAllNodes/releases), and extract it into your project's Plugins directory.
 
-https://github.com/nachomonkey/RefreshAllNodes/releases
+Relaunch the editor.
 
 ### Compiling from source
 
 Clone or download the repository into your project's Plugins directory, and relaunch the editor.
 
-A message will ask to compile the plugin.
+A message should appear asking to compile the plugin.
 
 ## Usage
 
