@@ -26,6 +26,8 @@ This plugin adds the **Refresh All Blueprint Nodes** button to the Blueprints to
 
 Clicking the button will refresh all nodes in all of your blueprints. It performs the same action as manually using "Refresh All nodes" on each blueprint.
 
+**Importance Notice: Do not use this plugin to fix problems caused by the Hot Reload, as it can cause node breakages and modify variable types. Instead of using this plugin, try restarting the editor. **
+
 ### Configuration
 
 The plugin can be configured under **Project Settings ->  Plugins -> Refresh All Nodes**
