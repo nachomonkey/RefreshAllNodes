@@ -14,7 +14,7 @@ Relaunch the editor.
 
 ### Compiling from source
 
-Clone or download the repository into your project's Plugins directory, and relaunch the editor.
+Clone or [download](https://github.com/nachomonkey/RefreshAllNodes/releases/tag/v1.1) the repository into your project's Plugins directory, and relaunch the editor.
 
 A message should appear asking to compile the plugin.
 
