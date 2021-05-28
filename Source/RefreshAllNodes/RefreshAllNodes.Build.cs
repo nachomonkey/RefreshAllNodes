@@ -14,7 +14,7 @@ public class RefreshAllNodes : ModuleRules
 		PrivateDependencyModuleNames.AddRange(new string[] {
 				"UnrealEd", "Slate", "SlateCore", "EditorStyle"});
 	
-		if (Target.Version.MinorVersion >= 26) {
+		if (Target.Version.MinorVersion >= 26 || Target.Version.MajorVersion > 4) {
 			PrivateDependencyModuleNames.AddRange(new string[] {
 				"DeveloperSettings"});
 		}
