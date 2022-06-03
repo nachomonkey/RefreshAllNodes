@@ -45,16 +45,6 @@ The plugin can be configured under **Project Settings ->  Plugins -> Refresh All
 * Additional Blueprint Paths: Array of additional paths to search in. Most useful for plugins. Add the name of the plugin to refresh its blueprints.
 * Exclude Blueprint Paths: Array of paths to not refresh blueprints in. Useful for excluding blueprints that are expensive to load.
 
-## Compatibility
-
-The plugin has been tested on Linux and Windows.
-
-It has been tested with the following versions:
-
-* 4.25.*x*
-* 4.26.*x*
-* 5.0.*x*
-
 ## Limitations
 
 This plugin's ability to refresh nodes is limited to Unreal Engine's built-in "Refresh All Nodes" function. The purpose of this plugin is only to provide an easy way to perform such action on Blueprint assets. This plugin is not responsible for any damage to Blueprints or any data loss.
