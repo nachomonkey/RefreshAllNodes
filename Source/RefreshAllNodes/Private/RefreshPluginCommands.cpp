@@ -3,6 +3,7 @@
 
 void FRefreshPluginCommands::RegisterCommands() {
 #define LOCTEXT_NAMESPACE ""
-	UI_COMMAND(RefreshButton, "Refresh All Blueprints", "Refresh all nodes in every Blueprint", EUserInterfaceActionType::Button, FInputChord(EModifierKey::Control|EModifierKey::Shift, EKeys::R));
+	UI_COMMAND(RefreshAllButton, "Refresh All Blueprint Nodes", "Refresh all nodes in every blueprint", EUserInterfaceActionType::Button, FInputChord());
+	UI_COMMAND(RefreshPathButton, "Refresh Blueprints", "Refresh all nodes in blueprints under this path", EUserInterfaceActionType::Button, FInputChord());
 #undef LOCTEXT_NAMESPACE
 }

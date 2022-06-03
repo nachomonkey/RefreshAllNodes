@@ -1,9 +1,9 @@
 {
 	"FileVersion": 3,
-	"Version": 2,
-	"VersionName": "1.2",
+	"Version": 3,
+	"VersionName": "1.3",
 	"FriendlyName": "RefreshAllNodes",
-	"Description": "Adds a button that refreshes every blueprint node in every blueprint.",
+	"Description": "Editor plugin that adds ways to refresh blueprints as a batch operation",
 	"Category": "Blueprints",
 	"CreatedBy": "Nachomonkey",
 	"CreatedByURL": "https://github.com/nachomonkey",

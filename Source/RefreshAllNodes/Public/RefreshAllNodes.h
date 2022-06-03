@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
+#include "ContentBrowserDelegates.h"
 #include "RefreshPluginCommands.h"
 #include "LevelEditor.h"
 
@@ -19,30 +20,24 @@ public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 
-	TSharedPtr<FExtender> MenuExtender;
-	TSharedPtr<const FExtensionBase> Extension;
+	TSharedPtr<FExtender> LevelEditorExtender;
+	TSharedPtr<const FExtensionBase> LevelEditorExtension;
+	TSharedPtr<const FExtensionBase> ContentBrowserExtension;
 
-	void RefreshButton_Clicked();
+	TArray<FString> SelectedFolders;
+
+	void RegisterLevelEditorButton();
+	void RegisterPathViewContextMenuButton();
+	
+	TSharedRef<FExtender> CreateContentBrowserExtender(const TArray<FString>& SelectedPaths);
+
+	void RefreshAllButton_Clicked();
+	void RefreshPathButton_Clicked();
+	
+	void FindAndRefreshBlueprints(const FARFilter& Filter, bool bShouldExclude = true);
 		
-	void AddMenuExtension(FMenuBuilder &Builder) {
-#if ENGINE_MAJOR_VERSION < 5
-		FSlateIcon IconBrush = FSlateIcon(FEditorStyle::GetStyleSetName(), "PropertyWindow.Button_Refresh");
-#else
-		FSlateIcon IconBrush = FSlateIcon(FEditorStyle::GetStyleSetName(), "EditorViewport.RotateMode");
-#endif
-		Builder.BeginSection("RefreshBlueprints", LOCTEXT("RefreshAllNodes", "Refresh Blueprints"));
-		Builder.AddMenuEntry(FRefreshPluginCommands::Get().RefreshButton, FName(""), FText::FromString("Refresh All Blueprint Nodes"), FText::FromString("Refresh all nodes in every blueprint"), IconBrush);
-		Builder.EndSection();
-	}
-
-	TSharedRef<FExtender> OnExtendLevelEditorViewMenu(const TSharedRef<FUICommandList> CommandList)
-	{
-		TSharedRef<FExtender> Extender(new FExtender());
-
-		Extender->AddMenuExtension("BlueprintClass", EExtensionHook::Before, CommandList, FMenuExtensionDelegate::CreateRaw(this, &FRefreshAllNodesModule::AddMenuExtension));
-
-		return Extender;
-	}
+	void AddLevelEditorMenuEntry(FMenuBuilder &Builder);
+	void AddPathViewContextMenuEntry(FMenuBuilder &Builder);
 };
 
 #undef LOCTEXT_NAMESPACE

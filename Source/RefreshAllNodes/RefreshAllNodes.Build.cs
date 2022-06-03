@@ -9,7 +9,7 @@ public class RefreshAllNodes : ModuleRules
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
 		PublicDependencyModuleNames.AddRange(new string[] {
-				"Core",	"CoreUObject", "Engine", "InputCore"});
+				"Core",	"CoreUObject", "Engine", "InputCore", "ContentBrowser"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {
 				"UnrealEd", "Slate", "SlateCore", "EditorStyle"});
