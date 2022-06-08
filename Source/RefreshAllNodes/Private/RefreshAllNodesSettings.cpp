@@ -5,7 +5,9 @@
 URefreshAllNodesSettings::URefreshAllNodesSettings() {
 	CategoryName = TEXT("Plugins");
 	SectionName = TEXT("Refresh All Nodes");
-	RefreshGameBlueprints = true;
+
+	bRefreshGameBlueprints = true;
+	bCompileBlueprints = true;
 }
 
 #if WITH_EDITOR

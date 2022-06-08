@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 #include "ContentBrowserDelegates.h"
-#include "RefreshPluginCommands.h"
 #include "LevelEditor.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogRefreshAllNodes, Log, All);
@@ -25,6 +24,9 @@ public:
 	TSharedPtr<const FExtensionBase> ContentBrowserExtension;
 
 	TArray<FString> SelectedFolders;
+
+	UPROPERTY()
+	TArray<UBlueprint*> ProblemBlueprints;
 
 	void RegisterLevelEditorButton();
 	void RegisterPathViewContextMenuButton();

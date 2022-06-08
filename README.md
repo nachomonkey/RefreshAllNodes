@@ -24,7 +24,7 @@ This plugin adds the **Refresh All Blueprint Nodes** button to the Blueprints to
 
 ![The button is shown in the Blueprints toolbar menu](docs/MenuButton.png)
 
-Clicking the button will refresh all nodes in all of your blueprints. It performs the same action as manually using "Refresh All nodes" on each blueprint.
+Clicking the button will refresh all nodes in all blueprints. It performs the same action as manually using "Refresh All nodes" on each blueprint, and then optionally compiles the blueprint. After the blueprints have all been refreshed, they are saved.
 
 The "Refresh Blueprints" action, found in the Content Browser's right-click context menu, will refresh blueprints found in the selected folders.
 
@@ -39,21 +39,13 @@ The plugin can be configured under **Project Settings ->  Plugins -> Refresh All
 
 ![Configuration](docs/Configuration.png)
 
-* Refresh Level Blueprints: If checked, the plugin will search for level blueprints. Don't use if you don't want your all levels being opened and saved.
-* Refresh Game Blueprints: If checked, the plugin will refresh blueprints found in the project's Content folder
-* Refresh Engine Blueprints: If checked, the plugin will refresh blueprints found in the engine's Content folder
+* Compile Blueprints: If checked, the plugin will compiled the blueprints after refreshing them. Enabling compilation will allow the plugin to catch  errors in the blueprints, but it will take more time to process.
+
+* Refresh Level Blueprints: If checked, the plugin will search for level blueprints. This will cause the corresponding levels to be opened and saved, which can consume extra memory.
+* Refresh Game Blueprints: If checked, the plugin will refresh blueprints found in the project's Content folder.
+* Refresh Engine Blueprints: If checked, the plugin will refresh blueprints found in the engine's Content folder.
 * Additional Blueprint Paths: Array of additional paths to search in. Most useful for plugins. Add the name of the plugin to refresh its blueprints.
 * Exclude Blueprint Paths: Array of paths to not refresh blueprints in. Useful for excluding blueprints that are expensive to load.
-
-## Compatibility
-
-The plugin has been tested on Linux and Windows.
-
-It has been tested with the following versions:
-
-* 4.25.*x*
-* 4.26.*x*
-* 5.0.*x*
 
 ## Limitations
 

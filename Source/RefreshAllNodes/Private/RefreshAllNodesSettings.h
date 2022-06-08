@@ -6,7 +6,7 @@
 #include "RefreshAllNodesSettings.generated.h"
 
 /**
- * Configure the Refresh All Nodes plug-in
+ * Configure the Refresh All Nodes plugin
  */
 UCLASS(config=Engine, defaultconfig)
 class URefreshAllNodesSettings : public UDeveloperSettings
@@ -19,18 +19,24 @@ class URefreshAllNodesSettings : public UDeveloperSettings
 #if WITH_EDITOR
 		virtual FText GetSectionText() const override;
 #endif
+		/** Determines whether blueprints should be compiled after being refreshed.
+		  * Enabling compilation will allow the plugin to catch errors in the blueprints,
+		  * but it will take more time to process.
+		  */
+		UPROPERTY(config, EditAnywhere, Category=Behavior)
+		bool bCompileBlueprints;
 
 		/** Should the plugin refresh level blueprints? */
 		UPROPERTY(config, EditAnywhere, Category=Search)
-		bool RefreshLevelBlueprints;
+		bool bRefreshLevelBlueprints;
 
 		/** Should the plugin refresh blueprints in this project's game content folder? */
 		UPROPERTY(config, EditAnywhere, Category=Search)
-		bool RefreshGameBlueprints;
+		bool bRefreshGameBlueprints;
 
 		/** Should the plugin refresh blueprints in the engine's content folder? */
 		UPROPERTY(config, EditAnywhere, Category=Search)
-		bool RefreshEngineBlueprints;
+		bool bRefreshEngineBlueprints;
 
 		/**
 		 * Additional paths to search in for blueprints to refresh, good for plugins
