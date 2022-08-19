@@ -5,7 +5,7 @@
 	"FriendlyName": "RefreshAllNodes",
 	"Description": "Editor plugin that adds ways to refresh and compile blueprints as a batch operation",
 	"Category": "Blueprints",
-	"CreatedBy": "Nachomonkey",
+	"CreatedBy": "NachoMonkey",
 	"CreatedByURL": "https://github.com/nachomonkey",
 	"DocsURL": "",
 	"MarketplaceURL": "",
