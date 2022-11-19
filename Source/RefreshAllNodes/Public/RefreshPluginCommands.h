@@ -7,7 +7,7 @@ class FRefreshPluginCommands : public TCommands<FRefreshPluginCommands>  {
 	
 	public:
 		FRefreshPluginCommands()
-		       	: TCommands<FRefreshPluginCommands>(FName(TEXT("RefreshPlugin")), FText::FromString("RefreshAllNodes Commands"), NAME_None, FEditorStyle::GetStyleSetName())
+		       	: TCommands<FRefreshPluginCommands>(FName(TEXT("RefreshPlugin")), FText::FromString("RefreshAllNodes Commands"), NAME_None, FAppStyle::GetAppStyleSetName())
 	       	{
 		};
 		

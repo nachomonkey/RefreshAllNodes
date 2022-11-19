@@ -4,7 +4,7 @@
 #include "RefreshAllNodesSettings.h"
 #include "RefreshPluginCommands.h"
 #include "Framework/Commands/Commands.h"
-#include "AssetRegistryModule.h"
+#include "AssetRegistry/AssetRegistryModule.h"
 #include "ContentBrowserModule.h"
 #include "IContentBrowserSingleton.h"
 #include "SlateBasics.h"
@@ -25,12 +25,6 @@
 #include "Widgets/Notifications/SNotificationList.h"
 
 DEFINE_LOG_CATEGORY(LogRefreshAllNodes);
-
-#if ENGINE_MAJOR_VERSION < 5
-#define ICON_BRUSH_NAME "PropertyWindow.Button_Refresh"
-#else
-#define ICON_BRUSH_NAME "EditorViewport.RotateMode"
-#endif
 
 // Formats text, accounts for proper grammar with plurals
 #define BLUEPRINTS_TEXT(x) FText::Format(FText::FromString("{0} blueprint{1}"), x, (x == 1) ? FText::GetEmpty() : FText::FromString("s"))
@@ -70,7 +64,7 @@ static void ShowProblemBlueprintsDialog(TArray<UBlueprint*> ErroredBlueprints) {
                         .HAlign(HAlign_Left)
                         [
                                 SNew(SHyperlink)
-                                .Style(FEditorStyle::Get(), "Common.GotoBlueprintHyperlink")
+                                .Style(FAppStyle::Get(), "Common.GotoBlueprintHyperlink")
                                 .OnNavigate(FSimpleDelegate::CreateLambda([BlueprintPtr, &CustomDialog]() { Local::OnHyperlinkClicked(BlueprintPtr, CustomDialog); }))
                                 .Text(FText::FromString(Blueprint->GetName()))
                                 .ToolTipText(NSLOCTEXT("SourceHyperlink", "EditBlueprint_ToolTip", "Click to edit the blueprint"))
@@ -86,8 +80,8 @@ static void ShowProblemBlueprintsDialog(TArray<UBlueprint*> ErroredBlueprints) {
 
         CustomDialog = SNew(SCustomDialog)
                 .Title(FText::FromString("Blueprint Compilation Errors"))
-                .IconBrush("NotificationList.DefaultMessage")
-                .DialogContent(DialogContents)
+                .Icon(FAppStyle::Get().GetBrush("NotificationList.DefaultMessage"))
+                .Content() [ DialogContents ]
                 .Buttons( { SCustomDialog::FButton(FText::FromString("Dismiss")) } );
 	CustomDialog->ShowModal();
 }
@@ -144,7 +138,7 @@ TSharedRef<FExtender> FRefreshAllNodesModule::CreateContentBrowserExtender(const
 }
 
 void FRefreshAllNodesModule::AddLevelEditorMenuEntry(FMenuBuilder &Builder) {
-	FSlateIcon IconBrush = FSlateIcon(FEditorStyle::GetStyleSetName(), ICON_BRUSH_NAME);
+	FSlateIcon IconBrush = FSlateIcon(FAppStyle::GetAppStyleSetName(), "EditorViewport.RotateMode");
 
 	Builder.BeginSection("RefreshBlueprints", FText::FromString("Refresh All Nodes"));
 	Builder.AddMenuEntry(FRefreshPluginCommands::Get().RefreshAllButton, FName(""), FText::FromString("Refresh All Blueprint Nodes"), FText::FromString("Refresh all nodes in every blueprint"), IconBrush);
@@ -152,7 +146,7 @@ void FRefreshAllNodesModule::AddLevelEditorMenuEntry(FMenuBuilder &Builder) {
 }
 
 void FRefreshAllNodesModule::AddPathViewContextMenuEntry(FMenuBuilder& Builder) {
-	FSlateIcon IconBrush = FSlateIcon(FEditorStyle::GetStyleSetName(), ICON_BRUSH_NAME);
+	FSlateIcon IconBrush = FSlateIcon(FAppStyle::GetAppStyleSetName(), "EditorViewport.RotateMode");
 
 	Builder.AddMenuEntry(FRefreshPluginCommands::Get().RefreshPathButton, FName(""), FText::FromString("Refresh Blueprints"), FText::FromString("Refresh all nodes in blueprints under this folder"), IconBrush);
 }
@@ -162,13 +156,13 @@ void FRefreshAllNodesModule::RefreshPathButton_Clicked() {
 	// This function is called when the button in the Content Browser right-click context menu is pressed
 
 	FARFilter Filter;
-	Filter.ClassNames.Add(UBlueprint::StaticClass()->GetFName());
+	Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
 	Filter.bRecursiveClasses = true;
 	Filter.bRecursivePaths = true;
 
 	const URefreshAllNodesSettings* Settings = GetDefault<URefreshAllNodesSettings>();
 	if (Settings->bRefreshLevelBlueprints) {    // Search for UWorld objects if we're searching for level blueprints
-		Filter.ClassNames.Add(UWorld::StaticClass()->GetFName());
+		Filter.ClassPaths.Add(UWorld::StaticClass()->GetClassPathName());
 	}
 
 	for (const FString& FolderPath : SelectedFolders) {
@@ -182,7 +176,7 @@ void FRefreshAllNodesModule::RefreshAllButton_Clicked() {
 	// This function is called when the main "Refresh All Blueprint Nodes" button in pressed
 
 	FARFilter Filter;
-	Filter.ClassNames.Add(UBlueprint::StaticClass()->GetFName());
+	Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
 	Filter.bRecursiveClasses = true;
 	Filter.bRecursivePaths = true;
 
@@ -193,7 +187,7 @@ void FRefreshAllNodesModule::RefreshAllButton_Clicked() {
 	}
 
 	if (Settings->bRefreshLevelBlueprints) {    // Search for UWorld objects if we're searching for level blueprints
-		Filter.ClassNames.Add(UWorld::StaticClass()->GetFName());
+		Filter.ClassPaths.Add(UWorld::StaticClass()->GetClassPathName());
 	} if (Settings->bRefreshGameBlueprints) {
 		Filter.PackagePaths.Add("/Game");
 	} if (Settings->bRefreshEngineBlueprints) {
@@ -239,7 +233,7 @@ void FRefreshAllNodesModule::FindAndRefreshBlueprints(const FARFilter& Filter, b
 	for (FAssetData Data : AssetData) {
 		bool bShouldSkip = false;
 
-		FString AssetPathString = Data.ObjectPath.ToString();
+		FString AssetPathString = Data.GetObjectPathString();
 
 		// Skip if this is in an excluded path and we are refreshing all blueprints
 		if (bShouldExclude) {
@@ -325,7 +319,7 @@ void FRefreshAllNodesModule::FindAndRefreshBlueprints(const FARFilter& Filter, b
 
 		FNotificationInfo Info(FText::Format(FText::FromString("{0} failed to compile"), BLUEPRINTS_TEXT(ProblemBlueprints.Num())));
 		Info.ExpireDuration = 15;
-		Info.Image = FEditorStyle::GetBrush("Icons.Warning");
+		Info.Image = FAppStyle::GetBrush("Icons.Warning");
 
 		TSharedPtr<SNotificationItem> ProblemNotification;
 	       	ProblemNotification = FSlateNotificationManager::Get().AddNotification(Info);

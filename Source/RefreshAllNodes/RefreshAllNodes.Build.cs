@@ -12,11 +12,6 @@ public class RefreshAllNodes : ModuleRules
 				"Core",	"CoreUObject", "Engine", "InputCore", "ContentBrowser"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {
-				"UnrealEd", "Slate", "SlateCore", "EditorStyle", "ToolWidgets"});
-	
-		if (Target.Version.MinorVersion >= 26 || Target.Version.MajorVersion > 4) {
-			PrivateDependencyModuleNames.AddRange(new string[] {
-				"DeveloperSettings"});
-		}
+				"UnrealEd", "Slate", "SlateCore", "EditorStyle", "ToolWidgets", "DeveloperSettings"});
 	}
 }
