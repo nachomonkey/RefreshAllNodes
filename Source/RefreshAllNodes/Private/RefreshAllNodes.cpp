@@ -18,7 +18,7 @@
 #include "Engine/LevelScriptBlueprint.h"
 #include "FileHelpers.h"
 
-#include "Dialogs/CustomDialog.h"
+#include "Dialog/SCustomDialog.h"
 #include "Widgets/Input/SHyperlink.h"
 
 #include "Framework/Notifications/NotificationManager.h"
