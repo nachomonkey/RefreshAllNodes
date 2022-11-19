@@ -2,11 +2,17 @@
 
 *Unreal Engine plugin that refreshes all blueprint nodes in every blueprint* 
 
+**The latest RefreshAllNodes version only supports UE versions 5.1 and later.**
+
+For use with UE 5.0 and earlier, use the [RefreshAllNodes v1.4 release](https://github.com/nachomonkey/RefreshAllNodes/releases/tag/v1.4%2B1-UE5.0.3)
+
+
+
 ## Installation
 
-### Pre-compiled (recommended)
+### Pre-compiled
 
-*Pre-compiled released of this plugin are supplied for Windows 64-bit.*
+*Pre-compiled releases of this plugin are supplied for Windows 10 64-bit.*
 
 Download a release that matches your version of Unreal Engine [from here](https://github.com/nachomonkey/RefreshAllNodes/releases), and extract it into your project's Plugins directory.
 
