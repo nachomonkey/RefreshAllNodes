@@ -12,36 +12,37 @@ For use with UE 5.0 and earlier, use the [RefreshAllNodes v1.4 release](https://
 
 ### Pre-compiled
 
-*Pre-compiled releases of this plugin are supplied for Windows 10 64-bit.*
+*The pre-compiled releases of this plugin are compiled running Windows 10 (64-bit).*
 
-Download a release that matches your version of Unreal Engine [from here](https://github.com/nachomonkey/RefreshAllNodes/releases), and extract it into your project's Plugins directory.
+* Download a release that matches your version of Unreal Engine [from here](https://github.com/nachomonkey/RefreshAllNodes/releases), and extract it into your project's Plugins directory.
 
-Relaunch the editor.
+* Relaunch the editor.
 
 ### Compiling from source
 
-Clone or [download](https://github.com/nachomonkey/RefreshAllNodes/releases/tag/v1.1) the repository into your project's Plugins directory and relaunch the editor.
+* Clone or download the repository into your project's `Plugins` directory and relaunch the editor.
 
-A message should appear asking to compile the plugin.
+* A message should appear asking to compile the plugin.
 
 ## Usage
 
-This plugin adds the **Refresh All Blueprint Nodes** button to the Blueprints toolbar menu as shown below:
+This plugin adds the **`Refresh All Blueprint Nodes`** button to the Blueprints toolbar menu:
 
 ![The button is shown in the Blueprints toolbar menu](docs/MenuButton.png)
 
-Clicking the button will refresh all nodes in all blueprints. It performs the same action as manually using "Refresh All nodes" on each blueprint, and then optionally compiles the blueprint. After the blueprints have all been refreshed, they are saved.
+As stated, the button will search for your Blueprints, open, them, and excecute the built-in "Refresh all nodes" function. By default, all blueprints are then compiled.
 
-The "Refresh Blueprints" action, found in the Content Browser's right-click context menu, will refresh blueprints found in the selected folders.
+The **`Refresh Blueprints`** action can be found in the Content Browser's context menu to refresh blueprints in certain folders:
 
 ![The button is shown in the Content Browser context menu](docs/ContextMenuButton.png)
 
-Note: Refreshing blueprint nodes may cause node breakages and change variable types if used in certain circumstances following a Hot Reload.
+* *Note: Refreshing blueprint nodes may cause node breakages or change variable types, especially in certain circumstances following a `HotReload`.*
+* *Note: I have not used RefreshAllNodes with Source Control, so it may cause undesired behavior by resaving every blueprint.*
 
 
 ### Configuration
 
-The plugin can be configured under **Project Settings ->  Plugins -> Refresh All Nodes**
+The plugin can be configured under **`Project Settings` ->  `Plugins` -> `Refresh All Nodes`**
 
 ![Configuration](docs/Configuration.png)
 
@@ -59,4 +60,4 @@ This plugin's ability to refresh nodes is limited to Unreal Engine's built-in "R
 
 # License
 
-This software is under the MIT License. See the [LICENSE](https://github.com/nachomonkey/RefreshAllNodes/blob/master/LICENSE) file for the full license.
+RefreshAllNodes is free software, licensed under the MIT License as contained in the [LICENSE](LICENSE) file.
